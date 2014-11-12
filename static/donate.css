@@ -1,0 +1,469 @@
+.donate-page .footer {
+  margin: 0;
+}
+.donate-container {
+  background-size: 100% auto;
+  padding: 66px 0;
+}
+.partner-blurb {
+  background: #fafafa;
+  background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fafafa), to(#dfdfdf));
+  background: -webkit-linear-gradient(#fafafa, #dfdfdf);
+  background: -moz-linear-gradient(#fafafa, #dfdfdf);
+  background: -ms-linear-gradient(#fafafa, #dfdfdf);
+  background: -o-linear-gradient(#fafafa, #dfdfdf);
+  background: linear-gradient(#fafafa, #dfdfdf);
+  -pie-background: linear-gradient(#fafafa, #dfdfdf);
+  padding: 23px;
+  width: 366px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  min-height: 432px;
+}
+.partner-blurb h2 {
+  font-size: 24px;
+  color: #333;
+  font-family: 'museo_sans700';
+  font-weight: normal;
+  border-bottom: 1px solid #ede7e1;
+  padding: 0 0 12px;
+  margin: 0 0 15px;
+}
+.partner-blurb h4 {
+  font-size: 18px;
+  color: #13a2c4;
+  font-family: 'museo_sans700';
+  font-weight: normal;
+  margin: 0 0 15px;
+}
+.partner-blurb p {
+  min-height: 250px;
+}
+.donate-form {
+  background: #fafafa;
+  background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fafafa), to(#dfdfdf));
+  background: -webkit-linear-gradient(#fafafa, #dfdfdf);
+  background: -moz-linear-gradient(#fafafa, #dfdfdf);
+  background: -ms-linear-gradient(#fafafa, #dfdfdf);
+  background: -o-linear-gradient(#fafafa, #dfdfdf);
+  background: linear-gradient(#fafafa, #dfdfdf);
+  -pie-background: linear-gradient(#fafafa, #dfdfdf);
+  width: 494px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+.form-progress-indicator {
+  padding: 40px 0;
+  background: #e0e0e0;
+  position: relativee;
+  -webkit-border-radius: 8px 8px 0 0;
+  -moz-border-radius: 8px 8px 0 0;
+  border-radius: 8px 8px 0 0;
+}
+.donation-complete {
+  background: #13a2c4;
+}
+.donation-complete .progress-indicator-stages li:after {
+  border-color: #1a88a1;
+}
+.donation-complete .progress-indicator-stages li.completed .stage-label {
+  color: #257189;
+}
+.donation-complete .progress-indicator-stages li.completed .stage-count {
+  background: #1a88a1;
+}
+.donation-complete .progress-indicator-stages li.active .stage-count {
+  background: #333;
+}
+.donation-complete .progress-indicator-stages li.stage-4 .stage-label {
+  left: -22px;
+}
+.progress-indicator-stages {
+  text-align: center;
+}
+.progress-indicator-stages li {
+  display: inline-block;
+  margin-left: 88px;
+  position: relative;
+  white-space: nowrap;
+  width: 26px;
+  cursor: pointer;
+}
+.progress-indicator-stages li .stage-label {
+  color: #999;
+  font-size: 13px;
+  position: relative;
+  text-transform: none;
+  font-family: 'museo_sans700';
+  font-weight: normal;
+}
+.progress-indicator-stages li .stage-count {
+  background: #b5b5b5;
+  border-radius: 99px;
+  color: #FFFFFF;
+  display: block;
+  height: 26px;
+  position: relative;
+  text-align: center;
+  width: 26px;
+  z-index: 5;
+  line-height: 26px;
+  font-size: 14px;
+  font-family: 'museo_sans700';
+  font-weight: normal;
+  margin-top: 4px;
+}
+.progress-indicator-stages li:first-child {
+  margin-left: 0;
+}
+.progress-indicator-stages li:after {
+  border-bottom: 1px solid #b5b5b5;
+  content: " ";
+  height: 0;
+  left: 26px;
+  position: absolute;
+  top: 33px;
+  width: 92px;
+  z-index: 0;
+}
+.progress-indicator-stages li:last-child:after {
+  display: none;
+}
+.progress-indicator-stages li.active .stage-label,
+.progress-indicator-stages li.completed.active .stage-label,
+.progress-indicator-stages li.completed.active:hover .stage-label,
+.progress-indicator-stages li.completed:hover .stage-label,
+.progress-indicator-stages li:hover .stage-label {
+  color: #333;
+}
+.progress-indicator-stages li.active .stage-count,
+.progress-indicator-stages li.completed.active .stage-count,
+.progress-indicator-stages li.completed.active:hover .stage-count,
+.progress-indicator-stages li.completed:hover .stage-count,
+.progress-indicator-stages li:hover .stage-count {
+  background: #13A2C4;
+}
+.progress-indicator-stages li.stage-1 .stage-label {
+  left: -14px;
+}
+.progress-indicator-stages li.stage-2 .stage-label {
+  left: -4px;
+}
+.progress-indicator-stages li.stage-3 .stage-label {
+  left: -18px;
+}
+.progress-indicator-stages li.completed .stage-label {
+  color: #999;
+}
+.progress-indicator-stages li.completed .stage-count {
+  background: #abd0d8;
+}
+.progress-stages {
+  padding: 35px;
+  min-height: 281px;
+}
+.progress-stage {
+  display: none;
+}
+.progress-stage h2 {
+  font-size: 18px;
+  font-family: 'museo_sans700';
+  font-weight: normal;
+  color: #333;
+  margin: 0 0 15px;
+}
+.progress-stage.stage-1,
+.progress-stage.stage-5 {
+  display: block;
+}
+.radio-inline {
+  margin: 0 0 30px;
+}
+.radio-inline span {
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 85px;
+  text-align: center;
+  background: #ffda00;
+  font-size: 18px;
+  color: #333;
+  font-family: 'museo_sans700';
+  font-weight: normal;
+  line-height: 22px;
+  height: 22px;
+  padding: 5px;
+  float: left;
+  margin: 0 0 14px 14px;
+}
+.radio-inline span label {
+  cursor: pointer;
+}
+.radio-inline span:nth-of-type(4n+1) {
+  margin-left: 0;
+}
+.radio-inline span:hover,
+.radio-inline span.active {
+  background: #13A2C4;
+  color: #fff;
+}
+.radio-inline input {
+  background: #fff;
+  border: 1px solid #333;
+  font-size: 12px;
+  padding: 2px;
+  width: 38px;
+  margin-left: 5px;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+.radio-inline.monthly {
+  letter-spacing: normal;
+}
+.radio-inline.monthly span {
+  margin-right: 11px;
+  margin-left: 0;
+}
+.radio-inline.monthly input {
+  margin-top: 5px;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+.progress-stage-button-next {
+  border-top: 1px solid #d2c8bc;
+  padding: 40px 0 0;
+  text-align: right;
+  margin: 25px 0 0;
+}
+.button a,
+.button input[type=submit] {
+  border: 0;
+  padding: 10px 35px;
+  color: #fff;
+  background: #6b6b6b;
+  display: inline-block;
+  font-size: 18px;
+  font-family: 'museo_sans900';
+  font-weight: normal;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.button a:hover,
+.button input[type=submit] {
+  background: #333333;
+}
+.button.donate a,
+.button.donate input[type=submit] {
+  padding: 15px 35px;
+  background: #13A2C4;
+  color: #fff;
+}
+.button.donate a:hover,
+.button.donate input[type=submit]:hover {
+  background: #FFDA00;
+  color: #333;
+}
+.row {
+  margin: 0 0 9px;
+}
+.row .span6 {
+  width: 48.5%;
+  float: left;
+  display: block;
+  margin-left: 12px;
+}
+.row .span6 select {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #aaa;
+  padding: 10px;
+  font-size: 14px;
+  color: #222;
+  font-family: 'museo_sans500';
+  font-weight: normal;
+  letter-spacing: 0.4px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+.row .span6:first-child {
+  margin-left: 0;
+}
+.row .span12 input[type="email"] {
+  width: 94.7%;
+  background: #fff;
+  border: 1px solid #aaa;
+  padding: 10px;
+  font-size: 14px;
+  color: #222;
+  font-family: 'museo_sans500';
+  font-weight: normal;
+  letter-spacing: 0.4px;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+.row .span12 input {
+  width: 94.7%;
+}
+.row ul li.code-wrapper {
+  margin-right: 23px;
+}
+.row ul li label {
+  font-size: 14px;
+  font-family: 'museo_sans500';
+  font-weight: normal;
+  letter-spacing: 0.4px;
+}
+.row ul li input {
+  background: #fff;
+  border: 1px solid #aaa;
+  padding: 10px;
+  font-size: 14px;
+  color: #222;
+  font-family: 'museo_sans500';
+  font-weight: normal;
+  letter-spacing: 0.4px;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+.row ul li input.month {
+  width: 26px;
+}
+.row ul li input.year {
+  width: 36px;
+}
+.row ul li input.code {
+  width: 46px;
+}
+.row ul li.fr {
+  text-align: right;
+}
+.row .span6 input,
+.row .span12 input {
+  width: 89.5%;
+  background: #fff;
+  border: 1px solid #aaa;
+  padding: 10px;
+  font-size: 14px;
+  color: #222;
+  font-family: 'museo_sans500';
+  font-weight: normal;
+  letter-spacing: 0.4px;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+.tip-text {
+  margin: 20px 0 30px;
+}
+.thankyou {
+  text-align: center;
+}
+.thankyou .tweet-btn {
+  margin-right: 0;
+}
+.thanks-sharebtn {
+  margin: auto;
+  width: 326px;
+  position: relative;
+}
+.thank-divider {
+  border-top: 1px solid #d2c8bc;
+  padding: 0;
+  margin: 50px 0 0;
+}
+#share-pop {
+  position: absolute;
+  background: #fff;
+  padding: 20px;
+  top: 68px;
+  width: 325px;
+  left: 50%;
+  margin-left: -184px;
+  text-align: left;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+#share-pop p {
+  font-size: 13px;
+}
+.smallyellow-btn {
+  font-size: 11px;
+  padding: 8px 15px;
+  text-align: right;
+  display: inline-block;
+  float: right;
+  margin: 5px 0 0;
+}
+/* overriding injected styles, !important
+   to the rescue */
+.smallyellow-btn a,
+.yellow-btn {
+  font-size: 11px !important;
+  padding: 0 !important;
+  text-align: right !important;
+  display: inline-block !important;
+  float: right !important;
+  margin: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  background: transparent !important;
+}
+.yellow-btn {
+  background: #ffe400 !important;
+  border: 1px solid #f7dd02 !important;
+  color: #333 !important;
+  font-size: 18px !important;
+  letter-spacing: .1em !important;
+  text-transform: uppercase !important;
+  font-family: 'museo_sans700' !important;
+  font-weight: normal !important;
+  padding: 12px 42px !important;
+  display: block !important;
+  cursor: pointer !important;
+}
+#share-pop:before {
+  position: absolute;
+  content: "";
+  left: 25%;
+  background: url(../images/popup-arrow.png) no-repeat left top;
+  width: 19px;
+  height: 16px;
+  top: -16px;
+}
+#tweet-pop {
+  position: absolute;
+  background: #fff;
+  padding: 20px;
+  top: 68px;
+  width: 325px;
+  left: 50%;
+  margin-left: -184px;
+  text-align: left;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+#tweet-pop p {
+  font-size: 13px;
+}
+#tweet-pop:before {
+  position: absolute;
+  content: "";
+  right: 25%;
+  background: url(../images/popup-arrow.png) no-repeat left top;
+  width: 19px;
+  height: 16px;
+  top: -16px;
+}

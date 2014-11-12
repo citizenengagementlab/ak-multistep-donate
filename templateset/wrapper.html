@@ -1,0 +1,101 @@
+{% load actionkit_tags %}
+<!DOCTYPE html>
+<html lang="{{page.lang.iso_code|default:"en"}}"{% if page.lang.is_rtl %} dir="rtl"{% endif %}>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}{{ page.title }} | {% filter ak_text:"org_name" %}{% client_name %}{% endfilter %}{% endblock %}</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1">
+  <script>startTime=new Date()</script>
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Climate Relief Fund" />
+  {% if form.id %}<meta name="description" property="og:description" content="{% block description %}{{ page.custom_fields.facebook_text|default:form.intro|striptags }}{% endblock %}">{% endif %}
+  {% if page.custom_fields.facebook_image_url %}<meta property="og:image" content="{{ page.custom_fields.facebook_image_url}}">{% endif %}
+  {% block meta_additions %}{% endblock %}
+
+  {% load_css %}
+     //climaterelief.s3.amazonaws.com/static/css/main.css
+     //fonts.googleapis.com/css?family=Montserrat:400,700'
+  {% end %}
+  {% block css_additions %}
+  {% endblock %}
+  {% if page.custom_fields.extra_head %}{{page.custom_fields.extra_head|safe}}{% endif %}
+  
+  {% load_ak_context context %}
+  {% load_js %}
+      //climaterelief.s3.amazonaws.com/static/js/main.js
+      //c.shpg.org/207/sp.js"
+      /resources/actionkit.js
+  {% end %}
+  {% block script_additions %}{% endblock %}
+  {% if page.custom_fields.extra_script %}{{page.custom_fields.extra_script|safe}}{% endif %}
+</head>
+<body class="{{ filename|split:'.'|nth:0 }}-page lang-{{page.lang.iso_code|default:"unknown"}}{% if page.lang.is_rtl %} ak-rtl{% endif %} ak-no-js {%block body_class%}{%endblock%}">
+<script type="text/javascript">actionkit.forms.initPage()</script>
+
+<div class="header clearfix">
+  <div class="wrapper">
+    <div class="logo fl"> <a href="http://climaterelief.org/"><img src="https://climaterelief.s3.amazonaws.com/static/images/logo.01c58c03abcc.png" alt="" /></a> </div>
+  </div>
+</div>
+
+{% block content %}{% endblock %}
+  
+{% block below_form %}
+<script type="text/javascript">
+actionkit.forms.contextRoot = '/context/';
+actionkit.forms.initForm('act');
+console.log(actionkit.form);
+</script>
+{% endblock %}
+
+{% if analytics_key %}
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '{{ analytics_key }}']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript';
+ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' :
+'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+{% endif %}
+
+
+<div class="footer">
+  <div class="share-twiiter clearfix">
+    <div class="wrapper clearfix">
+      <div class="footer-btn fl clearfix">
+        <div class="sp_8924 sp_share_button yellow-btn sp_fb_large"></div>
+        <div class="sp_8924 sp_share_button yellow-btn fl sp_tw_large"></div>
+      </div>
+      <div class="fl tweet-text">Connect with us on social media and spread the word about the Climate Relief Fund.</div>
+    </div>
+  </div>
+  <div class="footer-content">
+    <div class="wrapper clearfix">
+      <div class="footer-content-bg fl">
+      <p>The Climate Relief Fund is a project of the Citizen Engagement Lab Education Fund, a 501(c)3 non-profit organization registered in the United States.</p>
+        </div>
+        <div class="fr footer-links">
+          <ul class="clearfix">
+              <li><a href="#">Terms of Use</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+

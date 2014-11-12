@@ -1,0 +1,259 @@
+{% extends "./wrapper.html" %}{% load actionkit_tags %}{% load smartif %}
+
+
+{% block meta_additions %}
+  <meta property="og:url" value="{{ page.canonical_url }}">
+{% endblock %}
+
+{%block css_additions %}
+<style>
+
+.radio-inline input[type="radio"] {
+  display:none;
+  -webkit-appearance:radio;
+}
+
+.radio-inline input[type=radio]+label {
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+.hide-label {
+  position:absolute;
+  left:-9999px;
+}
+
+.no-margin { margin:0 !important; }
+
+#ak-errors {
+  display:none;
+  background-color: #f5ecd8;
+  padding: 5px 20px;
+  margin-top: -15px;
+  margin-bottom: 14px;
+}
+
+.donate-container {
+    background:url({{page.custom_fields.donate_bg_image|default:'//climaterelief-staging.s3.amazonaws.com/static/images/donate-bg.jpg'}}) no-repeat center top;
+    background-size: 100% auto;
+}
+
+</style>
+{%endblock%}
+
+{%block content%}
+
+{% with page.payment_processor_information as pp %}
+  {% if pp.use_cse %}
+    <script language="javascript" src="/samples/ak_braintree_cse.js"></script>
+    <script language="javascript" src="/media/js/braintree-cse.js"></script>
+    <script type="text/javascript">
+    $(function () {
+    var form = $('form#act')[0];
+    clientSideEncryptionKey = "{{ pp.cse_key }}";
+    braintree_cse.encryptOnSubmit(form, clientSideEncryptionKey);
+    $('form#act :input[type=submit]').removeAttr('disabled');
+    });
+    </script>
+  {% endif %}
+
+  {% if pp.use_tr %}
+    <script language="javascript" src="/samples/braintree.js"></script>
+  {% endif %}
+{% endwith %}
+
+<div class="container">
+  <div class="donate-container clearfix">
+    <div class="wrapper">
+      <div class="partner-blurb fl">
+        {% for candidate in candidates %}
+        <h2>{{candidate.name|default:"Partner Org Name"}}</h2>
+        <h4>{{page.title}}</h4>
+        <div>{% include_tmpl form.ask_text %}</div>
+        <img src="{{candidate.portrait_url|default:'http://placehold.it/142x66'}}" width="142" height="66" alt="{{candidate.name}} logo"> 
+        {%endfor%}
+      </div>
+      <div class="donate-form fr">
+        <form id="act" name="act" class="{% if page.payment_processor_information.use_tr %}braintree_form{% endif %}" method="POST" action="/act/" accept-charset="utf-8">
+          <input type="hidden" name="orig_akid" value="{{ akid }}">
+          <input type="hidden" name="page" value="{{ page.name }}">
+
+          {% if not page.allow_international %}
+            <input type="hidden" name="country" value="United States">
+          {% endif %}
+
+          <div class="form-progress-indicator">
+            <ul class="progress-indicator-stages clearfix">
+              <li class="progress-indicator-stage stage-1 active" data-link="stage-1"> <span class="stage-label">Amount</span> <span class="stage-count">1</span> </li>
+              <li class="progress-indicator-stage stage-2" data-link="stage-2"> <span class="stage-label">Name</span> <span class="stage-count">2</span> </li>
+              <li class="progress-indicator-stage stage-3" data-link="stage-3"> <span class="stage-label">Payment</span> <span class="stage-count">3</span> </li>
+              <li class="progress-indicator-stage stage-4" data-link="stage-4"> <span class="stage-label">Tip</span> <span class="stage-count">4</span> </li>
+            </ul>
+          </div>
+
+          <div class="progress-stages">
+            <ul id="ak-errors"></ul>
+
+            <div id="stage-1" class="progress-stage stage-1">
+              {% if page.has_candidates %}
+              {% for candidate in candidates %}
+              <h2>Your Donation</h2>
+              <input type="hidden" class="donation-amount" name="candidate_{{candidate.id}}" id="candidate_{{candidate.id}}" />
+              <div class="radio-inline clearfix" id="donateAmounts">
+                <span>
+                  <label class="amount_donate_other">$</label><input id="amount_donate_other" />
+                </span>
+              </div>
+             {% if page.custom_fields.allow_recurring_donations %}
+              <h2>Make it Monthly</h2>
+              <div class="radio-inline monthly clearfix">
+                <span class="active">
+
+                  <input type="radio" name="donation_type" id="id_donation_type_single" value="single" checked>
+                  <label for="id_donation_type_single" class="radio">No</label>
+                </span>
+                <span>
+                  <input type="radio" name="donation_type" id="id_donation_type_recurring" value="recurring">
+                  <label for="id_donation_type_recurring" class="radio">Yes</label>
+                </span>
+              </div>
+              {% endif %}
+              <div class="progress-stage-button-next button">
+                <a href="javascript:void(0);" data-link="stage-2">Next</a>
+              </div>
+              {% endfor %}
+              {% endif %}
+            </div>
+            
+
+            <div id="stage-2"  class="progress-stage stage-2">
+              <h2 class="fl">Name</h2>
+              <img class="fr" src="//climaterelief-staging.s3.amazonaws.com/static/images/secure-icon.jpg" width="60" height="17"> 
+                <div class="cl"></div>
+                <div class="ak-labels-overlaid ak-errs-below">
+                  <div class="row clearfix">
+                    <div class="span6">
+                      <label for="name">Name</label>
+                      <input id="name" type="text" name="name" />
+                    </div>
+                    <div class="span6">
+                      <label class="required" for="email">Email</label>
+                      <input id="email" type="text" name="email" />
+                    </div>
+                  </div>
+                  <div class="row clearfix">
+                    <div class="span6">
+                      <label for="address1">Billing Address</label>
+                      <input id="address1" type="text" name="address1"  />
+                    </div>
+                    <div class="span6">
+                      <label for="city">City</label>
+                      <input id="city" type="text" name="city" />
+                    </div>
+                  </div>
+                 <div class="row clearfix">
+                  {% if page.allow_international %}
+                  <div class="ak-errs-below" id="us_billing_fields">
+                  {% endif %}
+                  <div class="span6">
+                    {% include "./state_select.html" %}
+                  </div>
+                  <div class="span6">
+                    <label for="zip">Zip</label>
+                    <input id="zip" type="text" name="zip" maxlength="5" size="5" />
+                  </div>
+                  {% if page.allow_international %}
+                </div>
+                <div class="ak-errs-below" id="intl_billing_fields">
+                  <div class="span6">
+                    <label for="region">Region</label>
+                    <input id="region"  type="text" name="region" />
+                  </div>
+                  <div class="span6">
+                    <label for="postal">Postal Code</label>
+                    <input id="postal"  type="text" name="postal" />
+                  </div>
+                 </div>
+                 </div>
+                 <div class="row clearfix">
+                   <div class="span6 no-margin">
+                     {% with 'country_change()' as onchange %}{% include "./country_select.html" %}{% endwith %}</div>
+                  <script language="javascript">country_change();</script>
+                  {% endif %}
+                  </div> <!-- labels overlaid (billing address) -->
+                </div>
+               <div class="progress-stage-button-next button">
+                 <a href="javascript:void(0);" data-link="stage-3">Next</a>
+               </div>
+             </div>
+
+             <div id="stage-3" class="progress-stage stage-3">
+              <h2 class="fl">Payment</h2>
+              <img class="fr" src="//climaterelief-staging.s3.amazonaws.com/static/images/secure-icon.jpg" width="60" height="17"> 
+              <div class="cl"></div>
+                 <div class="row clearfix">
+                   <div class="span12">
+                      <label for="card_num">Card Number</label>
+                      <input id="card_num" type="text" name="card_num">
+                   </div>
+                 </div>
+                 <div class="row clearfix">
+                  <ul>
+                   <li class="fl">
+                     <label>Expires on:</label>
+                     <input type="text id="exp_date_month" class="month" name="exp_date_month" placeholder="MM" maxlength="2">
+                     <label>&nbsp;/&nbsp;</label>
+                     <input type="text id="exp_date_year" class="year" name="exp_date_year" placeholder="YYYY" maxlength="4">
+                   </li>
+                   <li class="fr code-wrapper">
+                     <label for="card_code">Security Code</label>
+                     <input class="code" name="card_code" type="text" placeholder="###" maxlength="3">
+                   </li>
+                  </ul>
+                 </div>
+                 <div class="progress-stage-button-next button">
+                  <a href="javascript:void(0);" data-link="stage-4">Next</a>
+                 </div> 
+               </div> 
+
+             <div id="stage-4" class="progress-stage stage-4">
+               <h2>{{ candidate.desc }}</h2>
+               <p class="tip-text">{{page.custom_fields.tip_text|default:"Consider supporting Climate Relief Fund by leaving an additional tip!"}}</p>
+
+               <div class="radio-inline clearfix">
+                 {% for amount in amounts %}
+                 {% ifnotequal amount "other" %}
+                  <span>
+                    <input type="radio" value="{{amount}}" class="amount_radio_button" id="amount_{{amount}}_field" name="amount">
+                    <label for="amount_{{amount}}_field" class="amount-button">${{ amount }}</label>  
+                  </span>  
+                {% endifnotequal %}
+                {% endfor %}
+                <span>
+                  <label class="amount_other_field">$</label><input id="amount_other_field" name="amount">
+                </span>
+                <span>
+                  <input type="radio" value="0" class="amount_radio_button" id="amount_0_field" name="amount">
+                  <label for="amount_0_field" class="amount-button">No Tip</label>  
+                </span>
+              </div>
+
+               <div class="progress-stage-button-next button donate">
+                 <input type="submit" value="Donate">
+               </div>
+             </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block script_additions %}
+<script>
+var donation_amounts = [{{page.custom_fields.donate_amounts}}] 
+</script>
+<script src="//climaterelief.s3.amazonaws.com/static/js/donate.js"></script>
+{% endblock %}
