@@ -3,8 +3,7 @@ ak-multistep-donate - a boilerplate for developing multistep donation forms usin
 
 Dependencies:
 
-* jQuery
-* Actionkit.js
+* Actionkit templating environment.
 
 How to use:
 
